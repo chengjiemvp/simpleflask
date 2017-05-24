@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title -%}
+Welcome
+{% endblock %}
+
+{% block page_content -%}
+      <h1>Welcome to my site.</h1>
+      <p>{{ moment( current_time ).format('LLL') }}:游览了此网页 </p>
+      <p>{{ moment( current_time ).fromNow( refresh = True) }}打开了此网页</p>
+
+<!-- {% for message in get_flashed_messages() %}
+<p style='color:red'>{{ message }}</p>
+{% endfor %} -->
+      <h1>你好，
+{%- if name -%}
+{{ name }}
+{%- else -%}
+陌生人，请登录：
+{%- endif %}
+      </h1>
+{% if not known %}
+<h3>很高兴见到你</h3>
+{% else %}
+<h3>欢迎回来</h3>
+{% endif %}
+{{ wtf.quick_form(form) }}
+{%- endblock %}
